@@ -137,14 +137,19 @@ const Form = () => {
   const handleSortChange = (e) => {
     setSortField(e.target.value);
   };
+const handleCancelChange=(index)=>{
+  setFormData(submittedData[index]);
+  setEditedIndex(null);
+  setIsEditing(false);
 
+};
   return (
     <>
     <div className="filter">
       <div className="title">
         <h1>Welcome To Form</h1>
       </div>
-      <div className="search">
+      {/* <div className="search">
         <label className="label">Search by: </label>
         
         <select className="select" value={sortField} onChange={handleSortChange}>
@@ -154,7 +159,7 @@ const Form = () => {
           <option value="fatherName">Father's Name</option>
           <option value="motherName">Mother's Name</option>
         </select>
-      </div>
+      </div> */}
       </div>
 
       <div className="add">
@@ -200,7 +205,7 @@ const Form = () => {
                 label="Address*"
                 type="text"
                 name="address"
-                value={formData.address2}
+                value={formData.address}
                 onChange={handleChange}
                 required
               />
@@ -233,11 +238,13 @@ const Form = () => {
                 data={data}
                 index={index}
                 editedIndex={editedIndex}
+                setFormData={setFormData}
                 formData={formData}
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
                 handleChange={handleChange}
                 handleSave={handleSave}
+                handleCancelChange={handleCancelChange}
                
               />
             ))}

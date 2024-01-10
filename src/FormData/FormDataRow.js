@@ -11,16 +11,21 @@ const FormDataRow = ({
   formData,
   handleEdit,
   handleDelete,
-  handleChange,
+  setFormData,
   handleSave,
+  handleCancelChange,
 }) => {
   const isBeingEdited = editedIndex === index;
-  const [showModal, setShowModal] = useState(false);
+  
+const handleChange=(e,name,index)=>{
+  const value =e.target.value;
+  const updatedData={
+    ...formData,[name]:value
+  }
+  setFormData(updatedData)
+}
 
-  const handleCancel = () => {
-    setShowModal(false);
-  };
-  console.log(showModal)
+
 
   return (
     <tr key={index}>
@@ -87,7 +92,7 @@ const FormDataRow = ({
             <>
             
             <button onClick={() => handleSave(index)}>Save</button>
-            <button onClick={()=> handleCancel() }>cancel</button>
+            <button onClick={()=>handleCancelChange(index)  }>cancel</button>
             </>
             
             
